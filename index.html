@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ETH-LOGO</title>
+  <style>
+
+    /* ////////////////// */
+    /* GLOBAL */
+    /* ////////////////// */
+
+    * {  backface-visibility: visible; }
+
+    html, body { height: 100%; }
+    body {
+      overflow: hidden;
+    }
+
+    #tridiv {
+      perspective: 1200px;
+      position: absolute;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      font-size: 100%;
+      transform: translate(0, 15%);
+    }
+
+    /* ////////////////// */
+    /* SCENE */
+    /* ////////////////// */
+
+    .scene {
+      transform:rotateX(-21deg) rotateY(-26deg);
+      animation: 10s rotate linear infinite;
+      backface-visibility: visible;
+      zoom: 200%;
+    }
+
+    .scene, .shape, .face, .face-wrapper, .cr {
+      position: absolute;
+      transform-style: preserve-3d;
+    }
+
+    .scene {
+      width: 80em;
+      height: 80em;
+      top: 70%;
+      left: 50%;
+      margin: -40em 0 0 -40em;
+    }
+
+    /* ////////////////// */
+    /* SHAPE */
+    /* ////////////////// */
+
+    .shape {
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      transform-origin: 50%;
+    }
+
+    /* ////////////////// */
+    /* FACE */
+    /* ////////////////// */
+
+    .face, .face-wrapper {
+      overflow: hidden;
+      transform-origin: 0 0;
+    }
+
+    .face {
+      background-size: 100% 100%!important;
+      background-position: center;
+    }
+
+    .face-wrapper .face {
+      left: 100%;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* ////////////////// */
+    /* SHADER */
+    /* ////////////////// */
+
+    .photon-shader {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* ////////////////// */
+    /* SIDE */
+    /* ////////////////// */
+
+    .side {
+      left: 50%;
+    }
+    .cr, 
+    .cr .side {
+      height: 100%;
+    }
+
+    /* ////////////////// */
+    /* PYRAMID */
+    /* ////////////////// */
+
+    [class*="pyramid"] .face-wrapper .face {
+      transform: rotateZ(45deg) translateX(-35.35%) translateY(35.35%);
+    }
+    [class*="pyramid"] .bk {
+      left: 100%;
+    }
+    [class*="pyramid"] .bm {
+      top: 100%;
+      transform: rotateX(-90deg) translateY(-50%);
+    }
+    [class*="pyramid"] .rt, [class*="pyramid"] .lt {
+      transform-origin: 50% 0;
+    }
+    
+    /* .pyr-1 styles */
+    .pyr-1 {
+      transform:translate3D(0em, -10em, 0em) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+      opacity:.65;
+      width:4em;
+      height:5em;
+      margin:-2.5em 0 0 -2em;
+    }
+    .pyr-1 .face-wrapper { width:4em; height:2em; }
+    .pyr-1 .face-wrapper .face { width:4em; height:4em; }
+    .pyr-1 .ft {transform:scaleZ(2.692582403567252) scaleY(2.692582403567252) rotateX(21.801409486351798deg);}
+    .pyr-1 .bk {transform:scaleZ(2.692582403567252) scaleY(2.692582403567252) rotateX(-21.801409486351798deg) rotateY(180deg);}
+    .pyr-1 .rt {transform:scaleX(2.692582403567252) scaleY(2.692582403567252) rotateZ(21.801409486351798deg) rotateY(-90deg);}
+    .pyr-1 .lt {transform:scaleX(2.692582403567252) scaleY(2.692582403567252) rotateZ(-21.801409486351798deg) rotateY(90deg);}
+    .pyr-1 .bm { width:4em; height:4em; }
+
+    /* .pyr-2 styles */
+    .pyr-2 {
+      transform:translate3D(0em, -4.5em, 0em) rotateX(0deg) rotateY(0deg) rotateZ(180deg);
+      opacity:.75;
+      width:4em;
+      height:5em;
+      margin:-2.5em 0 0 -2em;
+    }
+    .pyr-2 .face-wrapper {
+      width:4em;
+      height:2em;
+    }
+    .pyr-2 .face-wrapper .face { width:4em; height:4em; }
+    .pyr-2 .ft {transform:scaleZ(2.692582403567252) scaleY(2.692582403567252) rotateX(21.801409486351798deg);}
+    .pyr-2 .bk {transform:scaleZ(2.692582403567252) scaleY(2.692582403567252) rotateX(-21.801409486351798deg) rotateY(180deg);}
+    .pyr-2 .rt {transform:scaleX(2.692582403567252) scaleY(2.692582403567252) rotateZ(21.801409486351798deg) rotateY(-90deg);}
+    .pyr-2 .lt {transform:scaleX(2.692582403567252) scaleY(2.692582403567252) rotateZ(-21.801409486351798deg) rotateY(90deg);}
+    .pyr-2 .bm { width:4em; height:4em; }
+
+    /* ////////////////// */
+    /* Animaton */
+    /* ////////////////// */
+
+    @keyframes rotate {
+      0% {   transform: rotateX(-30deg) rotateY(0) ;}
+      100% {  transform: rotateX(-30deg) rotateY(360deg) ; }
+    }
+
+    /* ////////////////// */
+    /* Color */
+    /* ////////////////// */
+
+    .face { background-color: rgba(0,0,0,0.75); }
+
+  </style>
+</head>
+<body>
+
+</body>
+</html>
+
+<div id="tridiv">
+  <div class="scene">
+    <div class="shape pyramid-1 pyr-1">
+      <div class="face-wrapper ft">
+        <div class="face">
+          <div class="photon-shader"></div>
+        </div>
+      </div>
+      <div class="face-wrapper bk">
+        <div class="face">
+          <div class="photon-shader"></div>
+        </div>
+      </div>
+      <div class="face-wrapper lt">
+        <div class="face">
+          <div class="photon-shader"></div>
+        </div>
+      </div>
+      <div class="face-wrapper rt">
+        <div class="face">
+          <div class="photon-shader"></div>
+        </div>
+      </div>
+      <div class="face bm">
+        <div class="photon-shader"></div>
+      </div>
+    </div>
+    <div class="shape pyramid-2 pyr-2">
+      <div class="face-wrapper ft">
+        <div class="face">
+          <div class="photon-shader"></div>
+        </div>
+      </div>
+      <div class="face-wrapper bk">
+        <div class="face">
+          <div class="photon-shader"></div>
+        </div>
+      </div>
+      <div class="face-wrapper lt">
+        <div class="face">
+          <div class="photon-shader"></div>
+        </div>
+      </div>
+      <div class="face-wrapper rt">
+        <div class="face">
+          <div class="photon-shader"></div>
+        </div>
+      </div>
+      <div class="face bm">
+        <div class="photon-shader"></div>
+      </div>
+    </div>
+  </div>
+</div>
